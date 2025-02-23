@@ -7,22 +7,27 @@
 
 #include "vector"
 
-template <typename T> class Matrix {
- public:
-    std::vector<std::vector<T>> data;
+template <typename T>
+class Matrix {
+public:
+    std::vector<T> data;
     int rows, cols;
-    Matrix(int rows, int cols) : rows(rows), cols(cols) {
-      data = std::vector<std::vector<T>>(rows, std::vector<T>(cols, 0));
+
+    Matrix(const int rows, const int cols) : rows(rows), cols(cols), data(rows * cols, 0) {}
+
+    T& operator()(const int row, const int col) {
+        return data[row * cols + col];
     }
 
-    Matrix operator+(const Matrix &other) const {
-        if (rows != other.rows || cols != other.cols) {
-          throw std::invalid_argument("Matrix dimensions do not match, operation cannot be performed");
-        }
-        Matrix result(this->rows, this->cols);
-
+    const T& operator()(const int row, const int col) const {
+        return data[row * cols + col];
     }
+
+    Matrix operator+(const Matrix &other) const;
+    Matrix operator-(const Matrix &other) const;
+    Matrix operator*(const Matrix &other) const;
 };
+
 
 
 
