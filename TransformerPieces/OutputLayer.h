@@ -26,6 +26,7 @@ public:
     }
 
     // Compute logits (raw scores before softmax)
+    // Logits are the raw, unnormalized scores that tell us how likely each vocabulary token is.
     Matrix<T> compute_logits(const Matrix<T>& input) {
         // Compute logits (raw scores before softmax)
         Matrix<T> logits = input * W_output; // (batch_size × vocab_size)

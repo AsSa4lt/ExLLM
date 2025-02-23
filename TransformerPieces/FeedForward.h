@@ -44,6 +44,9 @@ public:
 
     // Forward pass through the feedforward network
     // Applies two linear transformations and a ReLU activation
+    // Why do we need this FFN? Self-Attention only mixes information between tokens.
+    // Think of Self-Attention as "talking to neighbors", while FFN is "thinking alone."
+    // Biases allow us to shift weight because with only W1 and W2 outputs will be forced to be 0
     Matrix<T> forward(const Matrix<bfloat16>& input) {
         // Step 1: First Linear Transformation (Expanding Features)
         // Multiplies input (batch_size x embedding_dim) with W1 (embedding_dim x hidden_dim)

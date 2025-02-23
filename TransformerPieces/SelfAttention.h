@@ -9,6 +9,9 @@ template <typename T>
 class SelfAttention {
 public:
     int embedding_dim;
+    // Query - What i'm looking for?
+    // Key - How relevant is this token?
+    // Value - What information does this token holds?
     Matrix<T> Wq, Wk, Wv;
 
     SelfAttention(int embedding_dim) : embedding_dim(embedding_dim),
@@ -28,6 +31,8 @@ public:
 
         // Step 2: Compute raw attention scores as Q * K^T.
         // This gives us a measure of how much each token should attend to others.
+        // we compare query of each token with key of ALL other tokens
+        // so high score - words are related, low - unrelated
         Matrix<T> scores = Q * K.transpose();
 
 
@@ -42,11 +47,13 @@ public:
 
         // Step 4: Apply causal masking if enabled (for autoregressive decoding).
         // This ensures that future tokens are not attended to, preserving the autoregressive property.
+        // we ensure that token at position i can only attend to previous tokens
+        // we set probability of the next tokens to -1e9
         if (apply_mask) {
             scores.apply_causal_mask();
         }
 
-        /// Step 5: Apply softmax row-wise to normalize the attention scores.
+        // Step 5: Apply softmax row-wise to normalize the attention scores.
         // Softmax converts the raw scores into probabilities summing to 1 for each row.
         for (int i = 0; i < scores.rows; ++i) {
             float sum = 0.0f;
