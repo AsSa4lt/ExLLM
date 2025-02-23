@@ -11,4 +11,5 @@ add_executable(ExLLM main.cpp
         TransformerPieces/SelfAttention.h
         TransformerPieces/FeedForward.h
         TransformerPieces/LayerNorm.h
-        TransformerPieces/OutputLayer.h)
+        TransformerPieces/OutputLayer.h
+        TransformerPieces/TransformerBlock.h)

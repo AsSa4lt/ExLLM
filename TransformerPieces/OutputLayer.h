@@ -14,11 +14,11 @@ template <typename T>
 class OutputLayer {
 public:
     int embedding_dim;
-    int vocab_size;
+    unsigned long vocab_size;
     Matrix<T> W_output;
     Matrix<T> b_output;
 
-    OutputLayer(int embedding_dim, int vocab_size)
+    OutputLayer(int embedding_dim, unsigned long vocab_size)
         : embedding_dim(embedding_dim), vocab_size(vocab_size),
           W_output(embedding_dim, vocab_size), b_output(1, vocab_size) {
         W_output.randomize();
