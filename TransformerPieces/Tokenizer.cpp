@@ -45,6 +45,7 @@ std::vector<int> Tokenizer::tokenize(const std::string &text) {
             tokens.push_back(vocabulary.size());
         }
     }
+    return tokens;
 }
 
 /**

@@ -6,7 +6,9 @@ set(CMAKE_CXX_STANDARD 23)
 add_executable(ExLLM main.cpp
         TransformerPieces/Tokenizer.cpp
         TransformerPieces/Tokenizer.h
-        TransformerPieces/Embedding.cpp
         TransformerPieces/Embedding.h
-        Utils/Matrix.cpp
-        Utils/Matrix.h)
+        Utils/Matrix.h
+        TransformerPieces/SelfAttention.h
+        TransformerPieces/FeedForward.h
+        TransformerPieces/LayerNorm.h
+        TransformerPieces/OutputLayer.h)
